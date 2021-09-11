@@ -1,20 +1,13 @@
 USE [DBNAME]
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Area_GetAll]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
 GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 create PROC [dbo].[USP_PLUS_Area_GetAll]
 AS
 BEGIN
 	SELECT IdArea, Nombre, Activo FROM Area where Activo = 1
 END
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_CambioClave_Insert]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 create PROC [dbo].[USP_PLUS_CambioClave_Insert]
 @Token		VARCHAR(4000),
 @IdUsuario	INT 
@@ -24,11 +17,7 @@ BEGIN
 	VALUES(@Token, GETDATE(), DATEADD(DAY, 2, GETDATE()), @IdUsuario,1)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Empleado_Get]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE PROCEDURE [dbo].[USP_PLUS_Empleado_Get]
 	@IdEmpleado INT
 AS
@@ -54,11 +43,7 @@ BEGIN
 	WHERE IdEmpleado = @IdEmpleado
 END
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Empleado_GetBirthdayToday]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE procedure [dbo].[USP_PLUS_Empleado_GetBirthdayToday]
 AS
 BEGIN
@@ -98,11 +83,7 @@ BEGIN
 	AND MONTH(FechaNacimiento) = 2 AND DAY(FechaNacimiento) = 29
 END
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Empleado_Insert]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE procedure [dbo].[USP_PLUS_Empleado_Insert](  
 	@IdTipoDocumento INT,
 	@NumeroDocumento VARCHAR(20),
@@ -154,11 +135,7 @@ BEGIN
 	SET @IdEmpleado = SCOPE_IDENTITY()
 END
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Empleado_SearchPaginated]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE procedure [dbo].[USP_PLUS_Empleado_SearchPaginated](
 	@offsetNumber INT,
 	@pageSize  INT,
@@ -204,11 +181,7 @@ BEGIN
 			);
 END
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Empleado_Update]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE procedure [dbo].[USP_PLUS_Empleado_Update](  
 	@IdEmpleado INT,
 	@IdTipoDocumento INT,
@@ -244,12 +217,6 @@ BEGIN
 	WHERE IdEmpleado = @IdEmpleado
 END
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Parametro_Get]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
 
 CREATE PROCEDURE [dbo].[USP_PLUS_Parametro_Get]
 	@IdSecuencialPadre	INT 
@@ -266,11 +233,7 @@ BEGIN
 	ORDER BY P.Orden
 END
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Parametro_GetOne]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE PROCEDURE [dbo].[USP_PLUS_Parametro_GetOne](
 	@IdSecuencialPadre	INT,
 	@IdSecuencial INT
@@ -288,11 +251,7 @@ BEGIN
 	ORDER BY P.Orden
 END
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Usuario_Get]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE PROCEDURE [dbo].[USP_PLUS_Usuario_Get]
 	@IdUsuario INT
 AS
@@ -315,11 +274,7 @@ BEGIN
 	WHERE IdUsuario = @IdUsuario
 END
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Usuario_Insert]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE procedure [dbo].[USP_PLUS_Usuario_Insert](  
 	@Cuenta VARCHAR(150),    
 	@Clave VARCHAR(15),
@@ -371,11 +326,6 @@ BEGIN
 	SET @IdUsuario = SCOPE_IDENTITY()
 END
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Usuario_Login]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 
 CREATE PROCEDURE [dbo].[USP_PLUS_Usuario_Login] 
  @Bill    VARCHAR(80),  
@@ -397,11 +347,7 @@ AS
 	INNER JOIN Parametro P1 ON U.IdTipoDocumento = P1.IdParametro    
 	WHERE U.Correo = @Bill AND U.Clave = @Password AND U.Activo = 1
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Usuario_SearchPaginated]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE procedure [dbo].[USP_PLUS_Usuario_SearchPaginated](
 	@offsetNumber INT,
 	@pageSize  INT,
@@ -451,11 +397,7 @@ BEGIN
 		);
 END
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Usuario_Update]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE procedure [dbo].[USP_PLUS_Usuario_Update](  
 	@IdUsuario INT,
 	@Cuenta VARCHAR(150),    
@@ -491,11 +433,6 @@ BEGIN
 	WHERE IdUsuario = @IdUsuario
 END
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Usuario_UpdatePassword]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 
 CREATE PROCEDURE [dbo].[USP_PLUS_Usuario_UpdatePassword]    
 @IdUsuario  INT,    
@@ -507,22 +444,12 @@ BEGIN
  WHERE IdUsuario = @IdUsuario
 END
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Usuario_ValidarNumeroDocumento]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 
 CREATE  PROCEDURE [dbo].[USP_PLUS_Usuario_ValidarNumeroDocumento]
 @NumeroDocumento VARCHAR(20) AS
 BEGIN
 	SELECT COUNT(NumeroDocumento) as [Count] FROM Usuario WHERE NumeroDocumento = @NumeroDocumento
 END
-GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Usuario_ValidarToken]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[USP_PLUS_Usuario_ValidarToken]    
@@ -538,11 +465,6 @@ BEGIN
 		Token = ltrim(rtrim(@token))  AND C.Activo = 1
 END 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Usuario_Validate]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 
 CREATE PROCEDURE [dbo].[USP_PLUS_Usuario_Validate]  
  @Bill    VARCHAR(80),  
@@ -552,22 +474,12 @@ AS
 	FROM Usuario
 	WHERE Correo = @Bill AND Clave = @Password AND Activo = 1
 GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_Usuario_ValidEmail]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 
 CREATE PROCEDURE [dbo].[USP_PLUS_Usuario_ValidEmail]
 @Email VARCHAR(100) AS    
 BEGIN    
  SELECT IdUsuario FROM Usuario WHERE Correo = @Email  AND Activo = 1  
 END 
-GO
-/****** Object:  StoredProcedure [dbo].[USP_PLUS_UsuarioPerfil_Get]    Script Date: 8/09/2021 20:11:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE procedure [dbo].[USP_PLUS_UsuarioPerfil_Get]
