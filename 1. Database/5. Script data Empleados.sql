@@ -3006,3 +3006,5 @@ INSERT [dbo].[Empleado] ([IdEmpleado], [IdTipoDocumento], [NumeroDocumento], [Ui
 GO
 SET IDENTITY_INSERT [dbo].[Empleado] OFF
 GO
+SELECT * FROM Empleado
+GO

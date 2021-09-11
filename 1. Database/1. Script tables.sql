@@ -1,4 +1,6 @@
 USE [DBNAME]
+GO
+
 CREATE TABLE [dbo].[Area](
 	[IdArea] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [varchar](200) NOT NULL,
@@ -10,6 +12,7 @@ CREATE TABLE [dbo].[Area](
 	PRIMARY KEY ([IdArea])
 ) 
 GO
+
 CREATE TABLE [dbo].[CambioClave](
 	[IdCambioClave] [int] IDENTITY(1,1) NOT NULL,
 	[Token] [varchar](4000) NOT NULL,
@@ -20,6 +23,7 @@ CREATE TABLE [dbo].[CambioClave](
     PRIMARY KEY([IdCambioClave])
 ) 
 GO
+
 CREATE TABLE [dbo].[Empleado](
 	[IdEmpleado] [int] IDENTITY(1,1) NOT NULL,
 	[IdTipoDocumento] [int] NOT NULL,
@@ -40,6 +44,7 @@ CREATE TABLE [dbo].[Empleado](
 	PRIMARY KEY ([IdEmpleado])
 ) 
 GO
+
 CREATE TABLE [dbo].[Parametro](
 	[IdParametro] [int] NOT NULL,
 	[IdParametroPadre] [int] NULL,
@@ -55,6 +60,7 @@ CREATE TABLE [dbo].[Parametro](
 	PRIMARY KEY ([IdParametro])
 )
 GO
+
 CREATE TABLE [dbo].[Usuario](
 	[IdUsuario] [int] IDENTITY(1,1) NOT NULL,
 	[Cuenta] [varchar](150) NOT NULL,
@@ -75,18 +81,24 @@ CREATE TABLE [dbo].[Usuario](
     PRIMARY KEY ([IdUsuario])
 ) 
 GO
+
 ALTER TABLE [dbo].[CambioClave]  WITH CHECK ADD  CONSTRAINT [FK_CambioClave_Usuario] FOREIGN KEY([IdUsuario])
 REFERENCES [dbo].[Usuario] ([IdUsuario])
 GO
+
 ALTER TABLE [dbo].[CambioClave] CHECK CONSTRAINT [FK_CambioClave_Usuario]
 GO
+
 ALTER TABLE [dbo].[Empleado]  WITH CHECK ADD  CONSTRAINT [FK_Empleado_Area] FOREIGN KEY([IdArea])
 REFERENCES [dbo].[Area] ([IdArea])
 GO
+
 ALTER TABLE [dbo].[Empleado] CHECK CONSTRAINT [FK_Empleado_Area]
 GO
+
 ALTER TABLE [dbo].[Usuario]  WITH CHECK ADD  CONSTRAINT [FK_Usuario_Parametro] FOREIGN KEY([IdTipoDocumento])
 REFERENCES [dbo].[Parametro] ([IdParametro])
 GO
+
 ALTER TABLE [dbo].[Usuario] CHECK CONSTRAINT [FK_Usuario_Parametro]
 GO

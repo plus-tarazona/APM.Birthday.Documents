@@ -6,3 +6,5 @@ INSERT [dbo].[Usuario] ([IdUsuario], [Cuenta], [Clave], [Correo], [IdTipoDocumen
 GO
 SET IDENTITY_INSERT [dbo].[Usuario] OFF
 GO
+SELECT * FROM Usuario
+GO

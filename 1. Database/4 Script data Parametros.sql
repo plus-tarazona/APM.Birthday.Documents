@@ -20,3 +20,5 @@ INSERT [dbo].[Parametro] ([IdParametro], [IdParametroPadre], [IdSecuencial], [No
 GO
 INSERT [dbo].[Parametro] ([IdParametro], [IdParametroPadre], [IdSecuencial], [Nombre], [Descripcion], [Orden], [Activo], [FechaCrea], [UsuarioCrea], [FechaEdita], [UsuarioEdita]) VALUES (10, 9, 1, N'Url Cambio Clave', N'http://177.85.33.53:29476/portal/change-pwd/', 1, 1, CAST(N'2021-09-09T19:13:26.123' AS DateTime), N'MIGRACION', NULL, NULL)
 GO
+SELECT * FROM Parametro
+GO

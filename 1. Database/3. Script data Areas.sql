@@ -32,3 +32,5 @@ INSERT [dbo].[Area] ([IdArea], [Nombre], [Activo], [UsuarioCrea], [FechaCrea], [
 GO
 SET IDENTITY_INSERT [dbo].[Area] OFF
 GO
+SELECT * FROM Area
+GO
