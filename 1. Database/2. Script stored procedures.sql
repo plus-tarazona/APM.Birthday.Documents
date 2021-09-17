@@ -63,6 +63,7 @@ BEGIN
 		,[FechaEdita]
 	FROM [dbo].[Empleado]
 	WHERE MONTH(FechaNacimiento) = MONTH(@fechaActual) AND DAY(FechaNacimiento) = DAY(@fechaActual)
+		AND Activo = 1
 	UNION
 	SELECT [IdEmpleado]
 		,[IdArea]
@@ -79,8 +80,9 @@ BEGIN
 		,[FechaEdita]
 	FROM [dbo].[Empleado]
 	WHERE YEAR(@fechaActual) % 4 = 0
-	AND MONTH(@fechaActual) = 3 AND DAY(@fechaActual) = 1
-	AND MONTH(FechaNacimiento) = 2 AND DAY(FechaNacimiento) = 29
+		AND MONTH(@fechaActual) = 3 AND DAY(@fechaActual) = 1
+		AND MONTH(FechaNacimiento) = 2 AND DAY(FechaNacimiento) = 29
+		AND Activo = 1
 END
 GO
 
