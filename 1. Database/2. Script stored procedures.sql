@@ -459,12 +459,11 @@ CREATE PROCEDURE [dbo].[USP_PLUS_Usuario_ValidarToken]
 BEGIN      
 	SELECT
 		U.IdUsuario,
-		U.Correo as Email,  
-		U.Nombres as Usuario  
-	FROM     
-		CambioClave C INNER JOIN Usuario U ON C.IdUsuario = U.IdUsuario     
-	WHERE 
-		Token = ltrim(rtrim(@token))  AND C.Activo = 1
+		U.Correo as Email,
+		U.Nombres as Usuario
+	FROM CambioClave C
+	INNER JOIN Usuario U ON C.IdUsuario = U.IdUsuario
+	WHERE C.Token = ltrim(rtrim(@token))  AND C.Activo = 1 AND C.FechaExpiracion >= @FechaActual
 END 
 GO
 
@@ -499,6 +498,17 @@ BEGIN
 		P.Cuenta
 	FROM Usuario P         
 		INNER JOIN Parametro TD ON P.IdTipoDocumento = TD.IdParametro
+	WHERE IdUsuario = @IdUsuario
+END
+GO
+CREATE procedure [dbo].[USP_PLUS_Usuario_ChangePassword](
+	@IdUsuario INT,
+	@Clave VARCHAR(50)
+)
+AS
+BEGIN
+	UPDATE Usuario SET 
+	Clave = @Clave
 	WHERE IdUsuario = @IdUsuario
 END
 GO
