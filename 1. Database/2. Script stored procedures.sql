@@ -347,7 +347,7 @@ AS
 			U.Activo
 	FROM Usuario AS U 
 	INNER JOIN Parametro P1 ON U.IdTipoDocumento = P1.IdParametro    
-	WHERE U.Correo = @Bill AND U.Clave = @Password AND U.Activo = 1
+	WHERE U.Cuenta = @Bill AND U.Clave = @Password AND U.Activo = 1
 GO
 
 CREATE procedure [dbo].[USP_PLUS_Usuario_SearchPaginated](
